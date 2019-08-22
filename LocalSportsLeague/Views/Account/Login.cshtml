@@ -1,0 +1,45 @@
+﻿@model LoginInput
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Officials Login</h1>
+<section>
+    <p>Officials, log in here first to submit game scores.</p>
+</section>
+<section>
+    <div>
+        <div>
+            <form asp-action="Login" method="post">
+                <input type="hidden" asp-for="ReturnURL" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <p>
+                    <label asp-for="Username">Username</label>
+                    <input asp-for="Username" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </p>
+                <p>
+                    <label asp-for="UserPassword">Password</label>
+                    <input asp-for="UserPassword" />
+                    <span asp-validation-for="UserPassword" class="text-danger"></span>
+                </p>
+                <p>
+                    <input type="submit" value="Login" class="subButton" />
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+
+@if (ViewData["message"] != null)
+{
+    <div class="error">
+        @ViewData["message"]
+    </div>
+}
+
+
+@*@section Scripts
+        {
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@

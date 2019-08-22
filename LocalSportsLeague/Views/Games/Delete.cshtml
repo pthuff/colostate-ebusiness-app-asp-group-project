@@ -1,0 +1,74 @@
+﻿@model LocalSportsLeague.Models.Game
+
+@{
+    ViewData["Title"] = "Delete Game Score";
+}
+
+<h1>Delete a Game Score</h1>
+<section>
+    <h2>Are you sure you want to delete this?</h2>
+</section>
+<hr />
+<section>
+    <div>
+        <dl>
+            <dt>
+                Season
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Season.Name)
+            </dd>
+            <dt>
+                Game ID
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Gameid)
+            </dd>
+            <dt>
+                Date of Game
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Datetime)
+            </dd>
+            <dt>
+                Home Team
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Hteam.Name)
+            </dd>
+            <dt>
+                Away Team
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ateam.Name)
+            </dd>
+            <dt>
+                Score
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Hscore) - @Html.DisplayFor(model => model.Ascore)
+            </dd>
+            <dt>
+                Overtime
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ot) 
+            </dd>
+            <dt>
+                Winner
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.WinnerNavigation.Name)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Gameid" />
+            <div class="buttonGroup">
+                <input type="submit" value="Delete Game Score" class="subButton" />
+                <a asp-action="Index" asp-route-seasonid="@TempData["season"]" class="btn-buttons">Cancel - Back to Game List</a>
+            </div>
+        </form>
+    </div>
+</section>
+

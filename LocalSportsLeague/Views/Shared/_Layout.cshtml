@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Local Sports League</title>
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+    <link href="~/css/recLeague_styles.css" rel="stylesheet" />
+    <link href="~/css/recLeague_layout.css" rel="stylesheet" />
+    <style>
+        .input-validation-error {
+            border: 1px solid red;
+            background-color: rgb(255,238,238);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img alt="View of the Rocky Mountains" title="Sports league" src="~/images/EstesPark.jpg" />
+        <nav>
+            <ul>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="TeamScores">Team Scores</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="LeagueStandings">League Standings</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Games" asp-action="SubmitScores">Submit Scores</a>
+                </li>
+                @if (!Context.User.Identity.IsAuthenticated)
+                {
+                    <li>
+                        <a asp-area="" asp-controller="Account" asp-action="Login" class="btn-buttons logButton">Login</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a asp-area="" asp-controller="Account" asp-action="Logout" class="btn-buttons logButton">Logout</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </header>
+    <div>
+        @*checking if temp data has the message key and display it at the top*@
+        @if (TempData["message"] != null)
+        {
+            <div class="error">@TempData["message"]</div>
+        }
+
+        @RenderBody()
+    </div>
+    <footer>
+        <p><em>Site developed by Team 112: Luke Buthman, Paul Huff, Teri Kieffer </em>&nbsp;&nbsp;&nbsp;&#9977;&nbsp;&nbsp;&nbsp;<em>Photo credit: Confluence Fort Collins</em></p>
+    </footer>
+</body>
+</html>

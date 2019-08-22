@@ -1,0 +1,34 @@
+﻿@model Game
+@{
+    ViewData["Title"] = "Submit Scores";
+}
+
+<h1>Submit Scores</h1>
+
+<section>
+    <p>Welcome back to the sports league, @User.Identity.Name !</p>
+    <p>Please select a season below to add, modify or delete games.</p>
+</section>
+<hr />
+<section>
+    <h2>Submit a new score</h2>
+    <form asp-action="Create" method="get">
+        <p>
+            <label asp-for="Seasonid">Select Season:</label>
+            <select asp-for="Seasonid" asp-items="ViewBag.Seasonid"></select>
+        </p>
+        <input type="submit" value="Search Season" class="btn-buttons" />
+    </form>
+</section>
+<hr />
+<section>
+    <h2>Edit or delete an existing score</h2>
+    <form asp-action="Index" method="get">
+        <p>
+            <label asp-for="Seasonid">Select Season:</label>
+            <select asp-for="Seasonid" asp-items="ViewBag.Seasonid"></select>
+        </p>
+        <input type="submit" value="Search Games" class="btn-buttons" />
+    </form>
+</section>
+

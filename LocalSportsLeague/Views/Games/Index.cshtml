@@ -1,0 +1,61 @@
+﻿@model IEnumerable<LocalSportsLeague.Models.Game>
+
+@{
+    ViewData["Title"] = "Game Scores";
+}
+
+<h1>Game Scores</h1>
+
+<a asp-action="Create" asp-route-seasonid="@TempData["season"]" style="margin-left: 50px" class="btn-buttons">Add New Game Score</a>
+
+<table id="allGames">
+    <thead>
+        <tr>
+            <th>
+                Game ID
+            </th>
+            <th>
+                Season
+            </th>
+            <th>
+                Date of Game
+            </th>
+            <th>
+                Home Team
+            </th>
+            <th>
+                Away Team
+            </th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gameid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Season.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datetime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hteam.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ateam.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Gameid">Edit</a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Gameid">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

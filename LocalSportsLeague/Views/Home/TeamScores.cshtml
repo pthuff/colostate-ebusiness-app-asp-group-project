@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Game>
+@{
+    ViewData["Title"] = "Team Scores";
+}
+<br />
+<hr />
+<form asp-action="TeamScores" method="get">   
+    <div align ="center">
+        <p>
+            <br />
+            @*Select a Season: <input maxlength="50" type="text" name="selectSeason" value="@ViewData["SeasonFilter"]" />*@
+            Select a Season: @Html.DropDownList("selectSeason", new SelectList(ViewBag.ListOfSeasons, "Value", "Text"))
+            &nbsp;&nbsp; Enter a Team Name: <input maxlength="20" type="text" name="searchName" value="@ViewData["NameFilter"]" /><br /><br />
+            <input name="search" type="submit" value="Search" /><br /><br />
+            <a asp-action="TeamScores">Back to Full List</a>
+        </p>
+    </div>
+</form>
+<hr />
+<table align="center">
+    <caption>Game Records</caption>
+    <thead>
+        <tr>
+            <th align="center">Game Date</th>
+            <th colspan="2" align="center">Home Team Score</th>
+            <th colspan="2" align="center">Away Team Score</th>
+            <th align="center">OT?</th>
+            <th align="center">Winner</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var g in Model)
+        {
+            <tr>
+                <td>@g.Datetime.ToShortDateString()</td>
+                <td align="right">@g.Hteam.Name</td>
+                <td>@g.Hscore</td>
+                <td align="right">@g.Ateam.Name</td>
+                <td>@g.Ascore</td>
+                <td align="center">@g.Ot</td>
+                <td align="center">
+                    @if (g.WinnerNavigation?.Name == null)
+                    {
+                        <text>Tie</text>
+                    }
+                    else
+                    {
+                        @g.WinnerNavigation?.Name
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

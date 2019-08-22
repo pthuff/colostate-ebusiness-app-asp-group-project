@@ -1,0 +1,78 @@
+﻿@model LocalSportsLeague.Models.Game
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Game</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Hscore)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Hscore)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ascore)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ascore)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ot)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ot)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Datetime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Datetime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ateam)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ateam.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Hteam)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Hteam.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Official)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Official.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Season)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Season.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WinnerNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WinnerNavigation.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SportNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SportNavigation.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Gameid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

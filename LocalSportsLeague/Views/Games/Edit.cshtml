@@ -1,0 +1,60 @@
+﻿@model LocalSportsLeague.Models.Game
+
+@{
+    ViewData["Title"] = "Edit Game Score";
+}
+
+<h1>Edit a Game Score</h1>
+
+<hr />
+<!-- Start form section -->
+<form asp-action="Edit" class="addScore" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Gameid" />
+    <input type="hidden" asp-for="Seasonid" />
+    <input type="hidden" asp-for="Officialid" />
+    <input type="hidden" asp-for="Sportid" />
+    <div class="col1">
+        <label asp-for="Datetime">Date of Game:</label>
+        <input asp-for="Datetime" /><br />
+        <span asp-validation-for="Datetime" class="text-danger"></span>
+    </div>
+    <div class="col2">
+        <label asp-for="Hteamid">Home Team:</label>
+        <select asp-for="Hteamid" asp-items="ViewBag.Hteamid"></select>
+    </div>
+    <div class="col3">
+        <label asp-for="Hscore">Home Score:</label>
+        <input asp-for="Hscore" /><br />
+        <span asp-validation-for="Hscore" class="text-danger"></span>
+    </div>
+    <div class="col2">
+        <label asp-for="Ateamid">Away Team:</label>
+        <select asp-for="Ateamid" asp-items="ViewBag.Ateamid"></select>
+    </div>
+    <div class="col3">
+        <label asp-for="Ascore">Away Score:</label>
+        <input asp-for="Ascore" /><br />
+        <span asp-validation-for="Ascore" class="text-danger"></span>
+    </div>
+    <div class="span2col">
+        <p>
+            <label>
+                <input asp-for="Ot" /> Check if the game went overtime
+            </label>
+        </p>
+    </div>
+    <div class="span2col">
+        <input type="submit" value="Edit Score" class="subButton" />
+    </div>
+</form>
+<hr />
+<!-- End form section -->
+<div class="buttonGroup">
+    <a asp-action="Create" asp-route-seasonid="@TempData["season"]" class="btn-buttons">Add a new score</a>
+    <a asp-action="SubmitScores" class="btn-buttons">Return to officials page</a>
+</div>
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@

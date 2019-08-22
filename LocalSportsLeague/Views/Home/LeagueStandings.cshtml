@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Standing>
+@{
+    ViewData["Title"] = "League Standings";
+}
+<br />
+<hr />
+<form asp-action="LeagueStandings" method="get">
+    <div align="center">
+        <p>
+            <br />
+            Select a Season: @Html.DropDownList("selectSeason", new SelectList(ViewBag.ListOfSeasons, "Value", "Text"))
+            <br /><br />
+            <input name="search" type="submit" value="Search" /><br /><br />
+        </p>
+    </div>
+</form>
+<hr />
+@if (Model.ToList().Count == 0)
+{
+    <h2>&nbsp Please Select a Season to display the Standings</h2>
+}
+else
+{
+    <table align="center">
+        <caption>League Standings</caption>
+        <thead>
+            <tr>
+                <th align="center">Rank</th>
+                <th align="center">Team</th>
+                <th align="center">Record</th>
+                <th align="center">Coach</th>
+                <th align="center">Win %</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var i = 1; }
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td align="right">@s.Team</td>
+                    <td>@s.Record</td>
+                    <td>@s.Coach</td>
+                    <td align="center">@s.WinPercentage %</td>
+
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+}
+
+
